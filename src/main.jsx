@@ -40,14 +40,14 @@ function Overlay(){
           <span className ="material-symbols-outlined">
               blur_on
           </span>
-              <div className="dropdown-content">
-                  <a href="https://fonts.google.com/icons?selected=Material+Symbols+Outlined:blur_on:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=blur" target="_blank">objectives</a>
-                  <a href="#">experience</a>
-                  <a href="#">personal</a>
+          <div className="dropdown-content">
+                  <a href="https://experience.will.limited">experience</a>
+                  <a href="https://projects.will.limited">projects</a>
+                  <a href="https://about.will.limited">personal</a>
               </div>
           </div>
           <div className="nav-item">
-              <a href="#">contact</a>
+              <a href="mailto:willdotlimited@gmail.com">contact</a>
           </div>
       </div>
   </>

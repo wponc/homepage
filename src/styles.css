@@ -1,10 +1,20 @@
-* {
+:root {
+  --primary-color: rgb(222, 213, 178);
+}
+
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color:rgb(222, 213, 178);
   font-family: 'Manrope', sans-serif;
   user-select:none;
+  font-weight: lighter;
+  text-rendering: optimizeLegibility;
+  text-shadow:
+  0.07em 0 black,
+  0 0.07em black,
+  -0.07em 0 black,
+  0 -0.07em black;
 }
 
 html,
@@ -13,15 +23,16 @@ body,
   width: 100%;
   height: 100%;
   position: relative;
-
+  background: rgb(1,3,21);
+  background: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(1, 32, 38) 100%);
 }
 
 .navbar {
   justify-content: space-between;
   display: flex;
-  padding: 3%;
+  padding: 1%;
   position:fixed;
-  z-index: 2;
+  z-index: 99;
   width:100%;
 }
 
@@ -33,7 +44,6 @@ body,
 .dropdown-content {
   display: none;
   position: absolute;
-  width: 100px;
   z-index: 1;
 }
 
@@ -45,12 +55,15 @@ body,
   display: block;
 }
 
-.navbar a {
+a {
   text-decoration: none;
-  font-size: 18pt;
-  color:rgb(222, 213, 178);
-  user-select: none;
+  color: var(--primary-color);
   transition: color 0.3s ease;
+}
+
+.navbar a {
+  font-size: 18pt;
+  user-select: none;
 }
 a:hover {
   color: #ffffff;
@@ -63,7 +76,6 @@ a:hover {
   'opsz' 24;
   font-size: 50px;
   color:rgb(222, 213, 178);
-  animation: spin 25s linear infinite;
   transition: color 0.3s ease;
 
 }
@@ -77,28 +89,14 @@ a:hover {
   top: 85%;
   z-index: 2;
   left: 3%;
-  mix-blend-mode: exclusion;
 }
 .welcome h3{
-  color:rgb(222, 213, 178);
+  color: var(--primary-color);
   font-weight: lighter
 }
 .welcome h2{
-  color:rgb(222, 213, 178);
+  color: var(--primary-color);
   font-weight: lighter;
-}
-
-
-@keyframes spin { 
-  0% {
-    -webkit-transform: rotate(360deg);
-  }
-  50% {
-    -webkit-transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
 }
 
 @keyframes fade-in{
