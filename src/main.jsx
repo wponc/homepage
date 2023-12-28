@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles.css'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Environment, Text, useGLTF, Center, Lightformer, MeshTransmissionMaterial  } from '@react-three/drei'
+import { OrbitControls, Text, useGLTF, Center, Sparkles, MeshTransmissionMaterial  } from '@react-three/drei'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -32,8 +32,7 @@ function Overlay(){
   return(
   <>    
     <div className="welcome">
-        <h2>hi there</h2>
-        <h2>i'm will, and this is my personal site</h2>
+        <h2>i'm will and this is my personal site</h2>
     </div>
     <div className="navbar">
       <div className="nav-item" id="menu-button">
@@ -60,23 +59,19 @@ function Experience()
     <>
 
         <OrbitControls />
-        {/* <Environment>
-          <Lightformer
-            form="rect" // circle | ring | rect (optional, default = rect)
-            intensity={10} // power level (optional = 1)
-            color="blue" // (optional = white)
-            scale={[10, 5]} // Scale it any way you prefer (optional = [1, 1])
-            target={[0, 0, 0]} // Target position (optional = undefined)
-          />
-        </Environment> */}
-        {/* <Environment preset="studio" /> */}
         <ambientLight />
-
-        <directionalLight position={[0, 3, 0]} />
+        <Sparkles
+          size={3}
+          scale={ [ 10, 10, 10 ] }
+          speed={ 0.3 }
+          count={ 200 }
+          position-z={-3}
+        />
+        {/* <directionalLight position={[0, 3, 0]} /> */}
 
         <Center>
             <Model />
-            <group position={[0, 0, -.5]}>
+            <group position={[0, 0, -.1]}>
               <Text color="#bdb597">
                 will.limited
               </Text>
@@ -90,19 +85,29 @@ function Experience()
 export function Model(props) {
   const { nodes, materials } = useGLTF("/checkeredPlane.glb");
 
+  const plane = useRef()
+  
+  useFrame((state, delta) => {
+    // console.log(state.clock.getElapsedTime())
+    // plane.current.material.thickness = Math.abs(Math.cos(state.clock.getElapsedTime() * Math.PI))
+    // plane.current.rotateZ(0.01)
+  })
+
   return (
     <group {...props} dispose={null}>
       <mesh
+        ref={plane}
         geometry={nodes.Plane.geometry}
         rotation={[0, -Math.PI / 2, -Math.PI / 2]}
-        scale={[1, 1, 2.5 ]}
+        scale={[1, .2, 2 ]}
       >
         <MeshTransmissionMaterial
           thickness={.5}
-          chromaticAberration={.3}
-          clearcoat={1}
+          chromaticAberration={.4}
+          // clearcoat={1}
           color="white"
         />
+        {/* <meshStandardMaterial/> */}
       </mesh>
     </group>
   );
