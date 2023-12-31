@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles.css'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Text, useGLTF, Center, Sparkles, MeshTransmissionMaterial  } from '@react-three/drei'
+import { OrbitControls, Text, useGLTF, Sparkles, MeshTransmissionMaterial, Bounds  } from '@react-three/drei'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,13 +13,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 function App() {
   return (
     <>
-      <Overlay />
+      <Overlay /> 
       <Canvas
         camera={ {
           fov: 45,
           near: 0.1,
           far: 200,
-          position: [ 0, 0, 4.5 ]
         } }
         >
         <Experience />
@@ -55,59 +54,40 @@ function Overlay(){
 
 function Experience()
 {
-    return(
-    <>
-
-        <OrbitControls />
-        <ambientLight />
-        <Sparkles
-          size={3}
-          scale={ [ 10, 10, 10 ] }
-          speed={ 0.3 }
-          count={ 200 }
-          position-z={-3}
-        />
-        {/* <directionalLight position={[0, 3, 0]} /> */}
-
-        <Center>
-            <Model />
-            <group position={[0, 0, -.1]}>
-              <Text color="#bdb597">
-                will.limited
-              </Text>
-            </group>
-        </Center>
-    </>
-    )
+  return(
+  <>
+      <OrbitControls />
+      <ambientLight />
+      <Sparkles
+        size={3}
+        scale={ [ 10, 10, 10 ] }
+        speed={ 0.3 }
+        count={ 200 }
+        position-z={-3}
+      />
+      <Bounds fit clip observe margin={.9}>
+        <Model />
+        <Text
+          color="#ded5b2"
+          position-z={-.1}
+          >
+          w.l
+        </Text>
+      </Bounds>
+  </>
+  )
 }
-
 
 export function Model(props) {
   const { nodes, materials } = useGLTF("/checkeredPlane.glb");
-
-  const plane = useRef()
-  
-  useFrame((state, delta) => {
-    // console.log(state.clock.getElapsedTime())
-    // plane.current.material.thickness = Math.abs(Math.cos(state.clock.getElapsedTime() * Math.PI))
-    // plane.current.rotateZ(0.01)
-  })
-
   return (
     <group {...props} dispose={null}>
       <mesh
-        ref={plane}
         geometry={nodes.Plane.geometry}
         rotation={[0, -Math.PI / 2, -Math.PI / 2]}
-        scale={[1, .2, 2 ]}
+        scale={[1, .2, 1 ]}
       >
-        <MeshTransmissionMaterial
-          thickness={.5}
-          chromaticAberration={.4}
-          // clearcoat={1}
-          color="white"
-        />
-        {/* <meshStandardMaterial/> */}
+        <MeshTransmissionMaterial thickness={.6} chromaticAberration={.5} color="white" />
       </mesh>
     </group>
   );
