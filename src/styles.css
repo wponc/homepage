@@ -90,11 +90,8 @@ a:hover {
   z-index: 2;
   left: 3%;
 }
-.welcome h3{
-  color: var(--primary-color);
-  font-weight: lighter
-}
-.welcome h2{
+
+.welcome h1{
   color: var(--primary-color);
   font-weight: lighter;
 }

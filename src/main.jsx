@@ -31,7 +31,7 @@ function Overlay(){
   return(
   <>    
     <div className="welcome">
-        <h2>i'm will and this is my personal site</h2>
+        <h1>i'm will and this is my personal site</h1>
     </div>
     <div className="navbar">
       <div className="nav-item" id="menu-button">
